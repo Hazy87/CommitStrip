@@ -11,12 +11,14 @@ html = scraperwiki.scrape("http://www.commitstrip.com/?random=1")
 root = lxml.html.fromstring(html)
 frame = root.cssselect("div.entry-content")[0]
 url = frame.cssselect('img')[0].get('src')
-print url
+print str(url)
 ret = scraperwiki.sql.select("* from data where 'url'='"+str(url)+"'")
 print str(len(ret))
+if(len(ret) == 0):
+  scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url)})
 #
 # # Write out to the sqlite database using scraperwiki library
-scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url)})
+
 #
 # # An arbitrary query against the database
 # scraperwiki.sql.select("* from data where 'name'='peter'")
