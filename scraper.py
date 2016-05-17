@@ -4,8 +4,7 @@
 import scraperwiki
 import lxml.html
 import sys
-import sqlite3
-sqlite3.Connection.text_factory = unicode
+
 stdin, stdout = sys.stdin, sys.stdout
 reload(sys)
 sys.stdin, sys.stdout = stdin, stdout
@@ -26,7 +25,10 @@ def getAndStoreRandomComic():
     scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url)})
 
 for x in range(0,20):
-  getAndStoreRandomComic();
+  try:
+    getAndStoreRandomComic();
+  except:
+    print "failed"
 #
 # # Write out to the sqlite database using scraperwiki library
 
