@@ -19,12 +19,12 @@ def getAndStoreRandomComic():
   frame = root.cssselect("div.entry-content")[0]
   url = frame.cssselect('img')[0].get('src')
   print str(url)
-  #ret = scraperwiki.sql.select("* from data where 'url'='"+str(url)+"'")
+  ret = scraperwiki.sql.select("* from data where 'url'='"+str(url)+"'")
   text = root.cssselect('h1.entry-title')[0].text
   print text
   if(len(ret) == 0):
     scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url), "text" : text})
-getAndStoreRandomComic();
+#getAndStoreRandomComic();
 for x in range(0,200):
   try:
     getAndStoreRandomComic();
