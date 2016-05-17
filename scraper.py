@@ -12,7 +12,7 @@ root = lxml.html.fromstring(html)
 frame = root.cssselect("div.entry-content")[0]
 url = frame.cssselect('img')[0].get('src')
 print url
-ret = scraperwiki.sql.select("* from data where 'url'='"+url+'")
+ret = scraperwiki.sql.select("* from data where 'url'='"+url+"'")
 print str(ret.len)
 #
 # # Write out to the sqlite database using scraperwiki library
