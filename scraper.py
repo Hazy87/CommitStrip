@@ -4,6 +4,8 @@
 import scraperwiki
 import lxml.html
 import sys
+import sqlite3
+sqlite3.Connection.text_factory = unicode
 stdin, stdout = sys.stdin, sys.stdout
 reload(sys)
 sys.stdin, sys.stdout = stdin, stdout
