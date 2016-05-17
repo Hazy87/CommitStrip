@@ -5,17 +5,21 @@ import scraperwiki
 import lxml.html
 #
 # # Read in a page
-html = scraperwiki.scrape("http://www.commitstrip.com/?random=1")
-#
-# # Find something on the page using css selectors
-root = lxml.html.fromstring(html)
-frame = root.cssselect("div.entry-content")[0]
-url = frame.cssselect('img')[0].get('src')
-print str(url)
-ret = scraperwiki.sql.select("* from data where 'url'='"+str(url)+"'")
-print str(len(ret))
-if(len(ret) == 0):
-  scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url)})
+def getAndStoreRandomComic():
+  html = scraperwiki.scrape("http://www.commitstrip.com/?random=1")
+  #
+  # # Find something on the page using css selectors
+  root = lxml.html.fromstring(html)
+  frame = root.cssselect("div.entry-content")[0]
+  url = frame.cssselect('img')[0].get('src')
+  print str(url)
+  ret = scraperwiki.sql.select("* from data where 'url'='"+str(url)+"'")
+  print str(len(ret))
+  if(len(ret) == 0):
+    scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url)})
+
+for x in range(0,20):
+  getAndStoreRandomComic();
 #
 # # Write out to the sqlite database using scraperwiki library
 
