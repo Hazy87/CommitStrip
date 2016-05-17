@@ -20,7 +20,7 @@ def getAndStoreRandomComic():
   url = frame.cssselect('img')[0].get('src')
   print str(url)
   text = root.cssselect('h1.entry-title')[0].text
-  scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url), "text" : text})
+  #scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url), "text" : text})
   ret = scraperwiki.sql.select("* from data where 'url'='"+str(url)+"'")
   
   print text
