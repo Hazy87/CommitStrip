@@ -13,7 +13,7 @@ frame = root.cssselect("div.entry-content")[0]
 url = frame.cssselect('img')[0].get('src')
 print url
 ret = scraperwiki.sql.select("* from data where 'url'='"+str(url)+"'")
-print str(ret.len)
+print str(len(ret))
 #
 # # Write out to the sqlite database using scraperwiki library
 scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url)})
