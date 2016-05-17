@@ -12,7 +12,7 @@ def getAndStoreRandomComic():
   root = lxml.html.fromstring(html)
   frame = root.cssselect("div.entry-content")[0]
   url = frame.cssselect('img')[0].get('src')
-  print str(url)
+  #print str(url)
   ret = scraperwiki.sql.select("* from data where 'url'='"+str(url)+"'")
   print str(len(ret))
   if(len(ret) == 0):
