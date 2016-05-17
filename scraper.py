@@ -9,7 +9,7 @@ html = scraperwiki.scrape("http://www.commitstrip.com/?random=1")
 #
 # # Find something on the page using css selectors
 root = lxml.html.fromstring(html)
-frame = root.cssselect("div.entry-content")
+frame = root.cssselect("div.entry-content")[0]
 url = frame.cssselect('img')[0].get('src')
 print url
 #
