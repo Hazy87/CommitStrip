@@ -3,6 +3,11 @@
 
 import scraperwiki
 import lxml.html
+import sys
+stdin, stdout = sys.stdin, sys.stdout
+reload(sys)
+sys.stdin, sys.stdout = stdin, stdout
+sys.setdefaultencoding('utf-8')
 #
 # # Read in a page
 def getAndStoreRandomComic():
@@ -12,7 +17,7 @@ def getAndStoreRandomComic():
   root = lxml.html.fromstring(html)
   frame = root.cssselect("div.entry-content")[0]
   url = frame.cssselect('img')[0].get('src')
-  #print str(url)
+  print str(url)
   ret = scraperwiki.sql.select("* from data where 'url'='"+str(url)+"'")
   print str(len(ret))
   if(len(ret) == 0):
