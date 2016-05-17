@@ -24,7 +24,7 @@ def getAndStoreRandomComic():
   print text
   if(len(ret) == 0):
     scraperwiki.sqlite.save(unique_keys=['url'], data={"url": str(url), "text" : text})
-
+getAndStoreRandomComic();
 for x in range(0,200):
   try:
     getAndStoreRandomComic();
